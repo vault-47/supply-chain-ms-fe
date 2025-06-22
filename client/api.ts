@@ -553,56 +553,52 @@ export interface UsersControllerGetUsers200Response {
  * AppApi - axios parameter creator
  * @export
  */
-export const AppApiAxiosParamCreator = function (
-  configuration?: Configuration,
-) {
-  return {
-    /**
-     *
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    appControllerGetHello: async (
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const AppApiAxiosParamCreator = (configuration?: Configuration) => ({
+  /**
+   *
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  appControllerGetHello: async (
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/api`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = {
+      method: "GET",
+      ...baseOptions,
+      ...options,
+    };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions =
+      baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = {
+      ...localVarHeaderParameter,
+      ...headersFromBaseOptions,
+      ...options.headers,
+    };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+});
 
 /**
  * AppApi - functional programming interface
  * @export
  */
-export const AppApiFp = function (configuration?: Configuration) {
+export const AppApiFp = (configuration?: Configuration) => {
   const localVarAxiosParamCreator = AppApiAxiosParamCreator(configuration);
   return {
     /**
@@ -637,11 +633,11 @@ export const AppApiFp = function (configuration?: Configuration) {
  * AppApi - factory interface
  * @export
  */
-export const AppApiFactory = function (
+export const AppApiFactory = (
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance,
-) {
+) => {
   const localVarFp = AppApiFp(configuration);
   return {
     /**
@@ -681,126 +677,122 @@ export class AppApi extends BaseAPI {
  * AuthApi - axios parameter creator
  * @export
  */
-export const AuthApiAxiosParamCreator = function (
-  configuration?: Configuration,
-) {
-  return {
-    /**
-     *
-     * @summary Grant access to all users
-     * @param {LoginRequestDto} loginRequestDto
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    authControllerLogin: async (
-      loginRequestDto: LoginRequestDto,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'loginRequestDto' is not null or undefined
-      assertParamExists(
-        "authControllerLogin",
-        "loginRequestDto",
-        loginRequestDto,
-      );
-      const localVarPath = `/api/auth/login`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const AuthApiAxiosParamCreator = (configuration?: Configuration) => ({
+  /**
+   *
+   * @summary Grant access to all users
+   * @param {LoginRequestDto} loginRequestDto
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  authControllerLogin: async (
+    loginRequestDto: LoginRequestDto,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'loginRequestDto' is not null or undefined
+    assertParamExists(
+      "authControllerLogin",
+      "loginRequestDto",
+      loginRequestDto,
+    );
+    const localVarPath = `/api/auth/login`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = {
+      method: "POST",
+      ...baseOptions,
+      ...options,
+    };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      localVarHeaderParameter["Content-Type"] = "application/json";
+    localVarHeaderParameter["Content-Type"] = "application/json";
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        loginRequestDto,
-        localVarRequestOptions,
-        configuration,
-      );
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions =
+      baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = {
+      ...localVarHeaderParameter,
+      ...headersFromBaseOptions,
+      ...options.headers,
+    };
+    localVarRequestOptions.data = serializeDataIfNeeded(
+      loginRequestDto,
+      localVarRequestOptions,
+      configuration,
+    );
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     *
-     * @summary SUPER_ADMIN registration
-     * @param {RegistrationRequestDto} registrationRequestDto
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    authControllerRegister: async (
-      registrationRequestDto: RegistrationRequestDto,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'registrationRequestDto' is not null or undefined
-      assertParamExists(
-        "authControllerRegister",
-        "registrationRequestDto",
-        registrationRequestDto,
-      );
-      const localVarPath = `/api/auth/register`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   *
+   * @summary SUPER_ADMIN registration
+   * @param {RegistrationRequestDto} registrationRequestDto
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  authControllerRegister: async (
+    registrationRequestDto: RegistrationRequestDto,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'registrationRequestDto' is not null or undefined
+    assertParamExists(
+      "authControllerRegister",
+      "registrationRequestDto",
+      registrationRequestDto,
+    );
+    const localVarPath = `/api/auth/register`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = {
+      method: "POST",
+      ...baseOptions,
+      ...options,
+    };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      localVarHeaderParameter["Content-Type"] = "application/json";
+    localVarHeaderParameter["Content-Type"] = "application/json";
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        registrationRequestDto,
-        localVarRequestOptions,
-        configuration,
-      );
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions =
+      baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = {
+      ...localVarHeaderParameter,
+      ...headersFromBaseOptions,
+      ...options.headers,
+    };
+    localVarRequestOptions.data = serializeDataIfNeeded(
+      registrationRequestDto,
+      localVarRequestOptions,
+      configuration,
+    );
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+});
 
 /**
  * AuthApi - functional programming interface
  * @export
  */
-export const AuthApiFp = function (configuration?: Configuration) {
+export const AuthApiFp = (configuration?: Configuration) => {
   const localVarAxiosParamCreator = AuthApiAxiosParamCreator(configuration);
   return {
     /**
@@ -878,11 +870,11 @@ export const AuthApiFp = function (configuration?: Configuration) {
  * AuthApi - factory interface
  * @export
  */
-export const AuthApiFactory = function (
+export const AuthApiFactory = (
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance,
-) {
+) => {
   const localVarFp = AuthApiFp(configuration);
   return {
     /**
@@ -964,202 +956,198 @@ export class AuthApi extends BaseAPI {
  * InvitesApi - axios parameter creator
  * @export
  */
-export const InvitesApiAxiosParamCreator = function (
-  configuration?: Configuration,
-) {
-  return {
-    /**
-     *
-     * @summary User i.e admins, shippers and vendors complete onboarding
-     * @param {string} inviteCode invite code
-     * @param {UserAcceptInviteRequestDto} userAcceptInviteRequestDto
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    invitesControllerAcceptInvite: async (
-      inviteCode: string,
-      userAcceptInviteRequestDto: UserAcceptInviteRequestDto,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'inviteCode' is not null or undefined
-      assertParamExists(
-        "invitesControllerAcceptInvite",
-        "inviteCode",
-        inviteCode,
-      );
-      // verify required parameter 'userAcceptInviteRequestDto' is not null or undefined
-      assertParamExists(
-        "invitesControllerAcceptInvite",
-        "userAcceptInviteRequestDto",
-        userAcceptInviteRequestDto,
-      );
-      const localVarPath = `/api/invites/{invite_code}/accept`.replace(
-        `{${"invite_code"}}`,
-        encodeURIComponent(String(inviteCode)),
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const InvitesApiAxiosParamCreator = (configuration?: Configuration) => ({
+  /**
+   *
+   * @summary User i.e admins, shippers and vendors complete onboarding
+   * @param {string} inviteCode invite code
+   * @param {UserAcceptInviteRequestDto} userAcceptInviteRequestDto
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  invitesControllerAcceptInvite: async (
+    inviteCode: string,
+    userAcceptInviteRequestDto: UserAcceptInviteRequestDto,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'inviteCode' is not null or undefined
+    assertParamExists(
+      "invitesControllerAcceptInvite",
+      "inviteCode",
+      inviteCode,
+    );
+    // verify required parameter 'userAcceptInviteRequestDto' is not null or undefined
+    assertParamExists(
+      "invitesControllerAcceptInvite",
+      "userAcceptInviteRequestDto",
+      userAcceptInviteRequestDto,
+    );
+    const localVarPath = `/api/invites/{invite_code}/accept`.replace(
+      `{${"invite_code"}}`,
+      encodeURIComponent(String(inviteCode)),
+    );
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = {
+      method: "POST",
+      ...baseOptions,
+      ...options,
+    };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      localVarHeaderParameter["Content-Type"] = "application/json";
+    localVarHeaderParameter["Content-Type"] = "application/json";
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        userAcceptInviteRequestDto,
-        localVarRequestOptions,
-        configuration,
-      );
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions =
+      baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = {
+      ...localVarHeaderParameter,
+      ...headersFromBaseOptions,
+      ...options.headers,
+    };
+    localVarRequestOptions.data = serializeDataIfNeeded(
+      userAcceptInviteRequestDto,
+      localVarRequestOptions,
+      configuration,
+    );
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     *
-     * @summary Admins send invite to ADMIN, SHIPPER and VENDOR
-     * @param {InviteUserRequestDto} inviteUserRequestDto
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    invitesControllerInvite: async (
-      inviteUserRequestDto: InviteUserRequestDto,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'inviteUserRequestDto' is not null or undefined
-      assertParamExists(
-        "invitesControllerInvite",
-        "inviteUserRequestDto",
-        inviteUserRequestDto,
-      );
-      const localVarPath = `/api/invites`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   *
+   * @summary Admins send invite to ADMIN, SHIPPER and VENDOR
+   * @param {InviteUserRequestDto} inviteUserRequestDto
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  invitesControllerInvite: async (
+    inviteUserRequestDto: InviteUserRequestDto,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'inviteUserRequestDto' is not null or undefined
+    assertParamExists(
+      "invitesControllerInvite",
+      "inviteUserRequestDto",
+      inviteUserRequestDto,
+    );
+    const localVarPath = `/api/invites`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = {
+      method: "POST",
+      ...baseOptions,
+      ...options,
+    };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+    // authentication bearer required
+    // http bearer authentication required
+    await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      localVarHeaderParameter["Content-Type"] = "application/json";
+    localVarHeaderParameter["Content-Type"] = "application/json";
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        inviteUserRequestDto,
-        localVarRequestOptions,
-        configuration,
-      );
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions =
+      baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = {
+      ...localVarHeaderParameter,
+      ...headersFromBaseOptions,
+      ...options.headers,
+    };
+    localVarRequestOptions.data = serializeDataIfNeeded(
+      inviteUserRequestDto,
+      localVarRequestOptions,
+      configuration,
+    );
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     *
-     * @summary Returns list of invites. Accessible only by SUPER_ADMIN and ADMIN
-     * @param {number} [page]
-     * @param {number} [pageSize]
-     * @param {InvitesControllerInvitesRoleEnum} [role]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    invitesControllerInvites: async (
-      page?: number,
-      pageSize?: number,
-      role?: InvitesControllerInvitesRoleEnum,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/invites`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   *
+   * @summary Returns list of invites. Accessible only by SUPER_ADMIN and ADMIN
+   * @param {number} [page]
+   * @param {number} [pageSize]
+   * @param {InvitesControllerInvitesRoleEnum} [role]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  invitesControllerInvites: async (
+    page?: number,
+    pageSize?: number,
+    role?: InvitesControllerInvitesRoleEnum,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/api/invites`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = {
+      method: "GET",
+      ...baseOptions,
+      ...options,
+    };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+    // authentication bearer required
+    // http bearer authentication required
+    await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      if (page !== undefined) {
-        localVarQueryParameter["page"] = page;
-      }
+    if (page !== undefined) {
+      localVarQueryParameter["page"] = page;
+    }
 
-      if (pageSize !== undefined) {
-        localVarQueryParameter["pageSize"] = pageSize;
-      }
+    if (pageSize !== undefined) {
+      localVarQueryParameter["pageSize"] = pageSize;
+    }
 
-      if (role !== undefined) {
-        localVarQueryParameter["role"] = role;
-      }
+    if (role !== undefined) {
+      localVarQueryParameter["role"] = role;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions =
+      baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = {
+      ...localVarHeaderParameter,
+      ...headersFromBaseOptions,
+      ...options.headers,
+    };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+});
 
 /**
  * InvitesApi - functional programming interface
  * @export
  */
-export const InvitesApiFp = function (configuration?: Configuration) {
+export const InvitesApiFp = (configuration?: Configuration) => {
   const localVarAxiosParamCreator = InvitesApiAxiosParamCreator(configuration);
   return {
     /**
@@ -1280,11 +1268,11 @@ export const InvitesApiFp = function (configuration?: Configuration) {
  * InvitesApi - factory interface
  * @export
  */
-export const InvitesApiFactory = function (
+export const InvitesApiFactory = (
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance,
-) {
+) => {
   const localVarFp = InvitesApiFp(configuration);
   return {
     /**
@@ -1430,61 +1418,57 @@ export type InvitesControllerInvitesRoleEnum =
  * ProfileApi - axios parameter creator
  * @export
  */
-export const ProfileApiAxiosParamCreator = function (
-  configuration?: Configuration,
-) {
-  return {
-    /**
-     *
-     * @summary Current user profile
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    profileControllerProfile: async (
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/profile`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const ProfileApiAxiosParamCreator = (configuration?: Configuration) => ({
+  /**
+   *
+   * @summary Current user profile
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  profileControllerProfile: async (
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/api/profile`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = {
+      method: "GET",
+      ...baseOptions,
+      ...options,
+    };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+    // authentication bearer required
+    // http bearer authentication required
+    await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions =
+      baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = {
+      ...localVarHeaderParameter,
+      ...headersFromBaseOptions,
+      ...options.headers,
+    };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+});
 
 /**
  * ProfileApi - functional programming interface
  * @export
  */
-export const ProfileApiFp = function (configuration?: Configuration) {
+export const ProfileApiFp = (configuration?: Configuration) => {
   const localVarAxiosParamCreator = ProfileApiAxiosParamCreator(configuration);
   return {
     /**
@@ -1523,11 +1507,11 @@ export const ProfileApiFp = function (configuration?: Configuration) {
  * ProfileApi - factory interface
  * @export
  */
-export const ProfileApiFactory = function (
+export const ProfileApiFactory = (
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance,
-) {
+) => {
   const localVarFp = ProfileApiFp(configuration);
   return {
     /**
@@ -1571,233 +1555,229 @@ export class ProfileApi extends BaseAPI {
  * QuotesApi - axios parameter creator
  * @export
  */
-export const QuotesApiAxiosParamCreator = function (
-  configuration?: Configuration,
-) {
-  return {
-    /**
-     *
-     * @summary Accept quote 🚧
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    quotesControllerAcceptQuote: async (
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/quotes/{id}/accept`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const QuotesApiAxiosParamCreator = (configuration?: Configuration) => ({
+  /**
+   *
+   * @summary Accept quote 🚧
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  quotesControllerAcceptQuote: async (
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/api/quotes/{id}/accept`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = {
+      method: "POST",
+      ...baseOptions,
+      ...options,
+    };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+    // authentication bearer required
+    // http bearer authentication required
+    await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions =
+      baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = {
+      ...localVarHeaderParameter,
+      ...headersFromBaseOptions,
+      ...options.headers,
+    };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     *
-     * @summary Create quote 🚧
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    quotesControllerCreateQuote: async (
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/quotes`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   *
+   * @summary Create quote 🚧
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  quotesControllerCreateQuote: async (
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/api/quotes`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = {
+      method: "POST",
+      ...baseOptions,
+      ...options,
+    };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+    // authentication bearer required
+    // http bearer authentication required
+    await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions =
+      baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = {
+      ...localVarHeaderParameter,
+      ...headersFromBaseOptions,
+      ...options.headers,
+    };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     *
-     * @summary Fetch quote details 🚧
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    quotesControllerGetQuote: async (
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/quotes/{id}`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   *
+   * @summary Fetch quote details 🚧
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  quotesControllerGetQuote: async (
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/api/quotes/{id}`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = {
+      method: "GET",
+      ...baseOptions,
+      ...options,
+    };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+    // authentication bearer required
+    // http bearer authentication required
+    await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions =
+      baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = {
+      ...localVarHeaderParameter,
+      ...headersFromBaseOptions,
+      ...options.headers,
+    };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     *
-     * @summary Fetch quotes 🚧
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    quotesControllerGetQuotes: async (
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/quotes`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   *
+   * @summary Fetch quotes 🚧
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  quotesControllerGetQuotes: async (
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/api/quotes`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = {
+      method: "GET",
+      ...baseOptions,
+      ...options,
+    };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+    // authentication bearer required
+    // http bearer authentication required
+    await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions =
+      baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = {
+      ...localVarHeaderParameter,
+      ...headersFromBaseOptions,
+      ...options.headers,
+    };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     *
-     * @summary Reject quote 🚧
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    quotesControllerRejectQuote: async (
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/quotes/{id}/reject`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   *
+   * @summary Reject quote 🚧
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  quotesControllerRejectQuote: async (
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/api/quotes/{id}/reject`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = {
+      method: "POST",
+      ...baseOptions,
+      ...options,
+    };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+    // authentication bearer required
+    // http bearer authentication required
+    await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions =
+      baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = {
+      ...localVarHeaderParameter,
+      ...headersFromBaseOptions,
+      ...options.headers,
+    };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+});
 
 /**
  * QuotesApi - functional programming interface
  * @export
  */
-export const QuotesApiFp = function (configuration?: Configuration) {
+export const QuotesApiFp = (configuration?: Configuration) => {
   const localVarAxiosParamCreator = QuotesApiAxiosParamCreator(configuration);
   return {
     /**
@@ -1937,11 +1917,11 @@ export const QuotesApiFp = function (configuration?: Configuration) {
  * QuotesApi - factory interface
  * @export
  */
-export const QuotesApiFactory = function (
+export const QuotesApiFactory = (
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance,
-) {
+) => {
   const localVarFp = QuotesApiFp(configuration);
   return {
     /**
@@ -2089,162 +2069,160 @@ export class QuotesApi extends BaseAPI {
  * RequestQuotesApi - axios parameter creator
  * @export
  */
-export const RequestQuotesApiAxiosParamCreator = function (
+export const RequestQuotesApiAxiosParamCreator = (
   configuration?: Configuration,
-) {
-  return {
-    /**
-     *
-     * @summary List requested quotes 🚧
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    requestQuotesControllerListRequestedQuotes: async (
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/request-quotes`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+) => ({
+  /**
+   *
+   * @summary List requested quotes 🚧
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  requestQuotesControllerListRequestedQuotes: async (
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/api/request-quotes`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = {
+      method: "GET",
+      ...baseOptions,
+      ...options,
+    };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+    // authentication bearer required
+    // http bearer authentication required
+    await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions =
+      baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = {
+      ...localVarHeaderParameter,
+      ...headersFromBaseOptions,
+      ...options.headers,
+    };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     *
-     * @summary Request quote 🚧
-     * @param {RequestQuoteRequestDto} requestQuoteRequestDto
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    requestQuotesControllerRequestQuote: async (
-      requestQuoteRequestDto: RequestQuoteRequestDto,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'requestQuoteRequestDto' is not null or undefined
-      assertParamExists(
-        "requestQuotesControllerRequestQuote",
-        "requestQuoteRequestDto",
-        requestQuoteRequestDto,
-      );
-      const localVarPath = `/api/request-quotes`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   *
+   * @summary Request quote 🚧
+   * @param {RequestQuoteRequestDto} requestQuoteRequestDto
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  requestQuotesControllerRequestQuote: async (
+    requestQuoteRequestDto: RequestQuoteRequestDto,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'requestQuoteRequestDto' is not null or undefined
+    assertParamExists(
+      "requestQuotesControllerRequestQuote",
+      "requestQuoteRequestDto",
+      requestQuoteRequestDto,
+    );
+    const localVarPath = `/api/request-quotes`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = {
+      method: "POST",
+      ...baseOptions,
+      ...options,
+    };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+    // authentication bearer required
+    // http bearer authentication required
+    await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      localVarHeaderParameter["Content-Type"] = "application/json";
+    localVarHeaderParameter["Content-Type"] = "application/json";
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        requestQuoteRequestDto,
-        localVarRequestOptions,
-        configuration,
-      );
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions =
+      baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = {
+      ...localVarHeaderParameter,
+      ...headersFromBaseOptions,
+      ...options.headers,
+    };
+    localVarRequestOptions.data = serializeDataIfNeeded(
+      requestQuoteRequestDto,
+      localVarRequestOptions,
+      configuration,
+    );
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     *
-     * @summary Details of requested quote, should also return corresponding quotes 🚧
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    requestQuotesControllerRequestQuoteDetail: async (
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/request-quotes/{id}`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   *
+   * @summary Details of requested quote, should also return corresponding quotes 🚧
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  requestQuotesControllerRequestQuoteDetail: async (
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/api/request-quotes/{id}`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = {
+      method: "GET",
+      ...baseOptions,
+      ...options,
+    };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+    // authentication bearer required
+    // http bearer authentication required
+    await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions =
+      baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = {
+      ...localVarHeaderParameter,
+      ...headersFromBaseOptions,
+      ...options.headers,
+    };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+});
 
 /**
  * RequestQuotesApi - functional programming interface
  * @export
  */
-export const RequestQuotesApiFp = function (configuration?: Configuration) {
+export const RequestQuotesApiFp = (configuration?: Configuration) => {
   const localVarAxiosParamCreator =
     RequestQuotesApiAxiosParamCreator(configuration);
   return {
@@ -2345,11 +2323,11 @@ export const RequestQuotesApiFp = function (configuration?: Configuration) {
  * RequestQuotesApi - factory interface
  * @export
  */
-export const RequestQuotesApiFactory = function (
+export const RequestQuotesApiFactory = (
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance,
-) {
+) => {
   const localVarFp = RequestQuotesApiFp(configuration);
   return {
     /**
@@ -2455,235 +2433,231 @@ export class RequestQuotesApi extends BaseAPI {
  * UsersApi - axios parameter creator
  * @export
  */
-export const UsersApiAxiosParamCreator = function (
-  configuration?: Configuration,
-) {
-  return {
-    /**
-     *
-     * @summary Activate user account. Accessible only by SUPER_ADMIN and ADMIN
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    usersControllerActivateUser: async (
-      id: string,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      assertParamExists("usersControllerActivateUser", "id", id);
-      const localVarPath = `/api/users/{id}/activate`.replace(
-        `{${"id"}}`,
-        encodeURIComponent(String(id)),
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const UsersApiAxiosParamCreator = (configuration?: Configuration) => ({
+  /**
+   *
+   * @summary Activate user account. Accessible only by SUPER_ADMIN and ADMIN
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  usersControllerActivateUser: async (
+    id: string,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'id' is not null or undefined
+    assertParamExists("usersControllerActivateUser", "id", id);
+    const localVarPath = `/api/users/{id}/activate`.replace(
+      `{${"id"}}`,
+      encodeURIComponent(String(id)),
+    );
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = {
+      method: "POST",
+      ...baseOptions,
+      ...options,
+    };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+    // authentication bearer required
+    // http bearer authentication required
+    await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions =
+      baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = {
+      ...localVarHeaderParameter,
+      ...headersFromBaseOptions,
+      ...options.headers,
+    };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     *
-     * @summary Returns specific user. Accessible only by SUPER_ADMIN and ADMIN
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    usersControllerGetUser: async (
-      id: string,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      assertParamExists("usersControllerGetUser", "id", id);
-      const localVarPath = `/api/users/{id}`.replace(
-        `{${"id"}}`,
-        encodeURIComponent(String(id)),
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   *
+   * @summary Returns specific user. Accessible only by SUPER_ADMIN and ADMIN
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  usersControllerGetUser: async (
+    id: string,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'id' is not null or undefined
+    assertParamExists("usersControllerGetUser", "id", id);
+    const localVarPath = `/api/users/{id}`.replace(
+      `{${"id"}}`,
+      encodeURIComponent(String(id)),
+    );
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = {
+      method: "GET",
+      ...baseOptions,
+      ...options,
+    };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+    // authentication bearer required
+    // http bearer authentication required
+    await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions =
+      baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = {
+      ...localVarHeaderParameter,
+      ...headersFromBaseOptions,
+      ...options.headers,
+    };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     *
-     * @summary Returns list of users. Accessible only by SUPER_ADMIN and ADMIN
-     * @param {number} [page]
-     * @param {number} [pageSize]
-     * @param {UsersControllerGetUsersRoleEnum} [role]
-     * @param {UsersControllerGetUsersStatusEnum} [status]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    usersControllerGetUsers: async (
-      page?: number,
-      pageSize?: number,
-      role?: UsersControllerGetUsersRoleEnum,
-      status?: UsersControllerGetUsersStatusEnum,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/api/users`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   *
+   * @summary Returns list of users. Accessible only by SUPER_ADMIN and ADMIN
+   * @param {number} [page]
+   * @param {number} [pageSize]
+   * @param {UsersControllerGetUsersRoleEnum} [role]
+   * @param {UsersControllerGetUsersStatusEnum} [status]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  usersControllerGetUsers: async (
+    page?: number,
+    pageSize?: number,
+    role?: UsersControllerGetUsersRoleEnum,
+    status?: UsersControllerGetUsersStatusEnum,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/api/users`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = {
+      method: "GET",
+      ...baseOptions,
+      ...options,
+    };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+    // authentication bearer required
+    // http bearer authentication required
+    await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      if (page !== undefined) {
-        localVarQueryParameter["page"] = page;
-      }
+    if (page !== undefined) {
+      localVarQueryParameter["page"] = page;
+    }
 
-      if (pageSize !== undefined) {
-        localVarQueryParameter["pageSize"] = pageSize;
-      }
+    if (pageSize !== undefined) {
+      localVarQueryParameter["pageSize"] = pageSize;
+    }
 
-      if (role !== undefined) {
-        localVarQueryParameter["role"] = role;
-      }
+    if (role !== undefined) {
+      localVarQueryParameter["role"] = role;
+    }
 
-      if (status !== undefined) {
-        localVarQueryParameter["status"] = status;
-      }
+    if (status !== undefined) {
+      localVarQueryParameter["status"] = status;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions =
+      baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = {
+      ...localVarHeaderParameter,
+      ...headersFromBaseOptions,
+      ...options.headers,
+    };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     *
-     * @summary Suspend user account. Accessible only by SUPER_ADMIN and ADMIN
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    usersControllerSuspendUser: async (
-      id: string,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      assertParamExists("usersControllerSuspendUser", "id", id);
-      const localVarPath = `/api/users/{id}/suspend`.replace(
-        `{${"id"}}`,
-        encodeURIComponent(String(id)),
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   *
+   * @summary Suspend user account. Accessible only by SUPER_ADMIN and ADMIN
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  usersControllerSuspendUser: async (
+    id: string,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'id' is not null or undefined
+    assertParamExists("usersControllerSuspendUser", "id", id);
+    const localVarPath = `/api/users/{id}/suspend`.replace(
+      `{${"id"}}`,
+      encodeURIComponent(String(id)),
+    );
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = {
+      method: "POST",
+      ...baseOptions,
+      ...options,
+    };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication bearer required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+    // authentication bearer required
+    // http bearer authentication required
+    await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions =
+      baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = {
+      ...localVarHeaderParameter,
+      ...headersFromBaseOptions,
+      ...options.headers,
+    };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+});
 
 /**
  * UsersApi - functional programming interface
  * @export
  */
-export const UsersApiFp = function (configuration?: Configuration) {
+export const UsersApiFp = (configuration?: Configuration) => {
   const localVarAxiosParamCreator = UsersApiAxiosParamCreator(configuration);
   return {
     /**
@@ -2832,11 +2806,11 @@ export const UsersApiFp = function (configuration?: Configuration) {
  * UsersApi - factory interface
  * @export
  */
-export const UsersApiFactory = function (
+export const UsersApiFactory = (
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance,
-) {
+) => {
   const localVarFp = UsersApiFp(configuration);
   return {
     /**

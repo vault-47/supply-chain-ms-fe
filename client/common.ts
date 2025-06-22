@@ -28,11 +28,11 @@ export const DUMMY_BASE_URL = "https://example.com";
  * @throws {RequiredError}
  * @export
  */
-export const assertParamExists = function (
+export const assertParamExists = (
   functionName: string,
   paramName: string,
   paramValue: unknown,
-) {
+) => {
   if (paramValue === null || paramValue === undefined) {
     throw new RequiredError(
       paramName,
@@ -45,11 +45,11 @@ export const assertParamExists = function (
  *
  * @export
  */
-export const setApiKeyToObject = async function (
+export const setApiKeyToObject = async (
   object: any,
   keyParamName: string,
   configuration?: Configuration,
-) {
+) => {
   if (configuration && configuration.apiKey) {
     const localVarApiKeyValue =
       typeof configuration.apiKey === "function"
@@ -63,10 +63,10 @@ export const setApiKeyToObject = async function (
  *
  * @export
  */
-export const setBasicAuthToObject = function (
+export const setBasicAuthToObject = (
   object: any,
   configuration?: Configuration,
-) {
+) => {
   if (configuration && (configuration.username || configuration.password)) {
     object["auth"] = {
       username: configuration.username,
@@ -79,10 +79,10 @@ export const setBasicAuthToObject = function (
  *
  * @export
  */
-export const setBearerAuthToObject = async function (
+export const setBearerAuthToObject = async (
   object: any,
   configuration?: Configuration,
-) {
+) => {
   if (configuration && configuration.accessToken) {
     const accessToken =
       typeof configuration.accessToken === "function"
@@ -96,12 +96,12 @@ export const setBearerAuthToObject = async function (
  *
  * @export
  */
-export const setOAuthToObject = async function (
+export const setOAuthToObject = async (
   object: any,
   name: string,
   scopes: string[],
   configuration?: Configuration,
-) {
+) => {
   if (configuration && configuration.accessToken) {
     const localVarAccessTokenValue =
       typeof configuration.accessToken === "function"
@@ -114,7 +114,7 @@ export const setOAuthToObject = async function (
 function setFlattenedQueryParams(
   urlSearchParams: URLSearchParams,
   parameter: any,
-  key: string = "",
+  key = "",
 ): void {
   if (parameter == null) return;
   if (typeof parameter === "object") {
@@ -144,7 +144,7 @@ function setFlattenedQueryParams(
  *
  * @export
  */
-export const setSearchParams = function (url: URL, ...objects: any[]) {
+export const setSearchParams = (url: URL, ...objects: any[]) => {
   const searchParams = new URLSearchParams(url.search);
   setFlattenedQueryParams(searchParams, objects);
   url.search = searchParams.toString();
@@ -154,11 +154,11 @@ export const setSearchParams = function (url: URL, ...objects: any[]) {
  *
  * @export
  */
-export const serializeDataIfNeeded = function (
+export const serializeDataIfNeeded = (
   value: any,
   requestOptions: any,
   configuration?: Configuration,
-) {
+) => {
   const nonString = typeof value !== "string";
   const needsSerialization =
     nonString && configuration && configuration.isJsonMime
@@ -173,21 +173,20 @@ export const serializeDataIfNeeded = function (
  *
  * @export
  */
-export const toPathString = function (url: URL) {
-  return url.pathname + url.search + url.hash;
-};
+export const toPathString = (url: URL) => url.pathname + url.search + url.hash;
 
 /**
  *
  * @export
  */
-export const createRequestFunction = function (
-  axiosArgs: RequestArgs,
-  globalAxios: AxiosInstance,
-  BASE_PATH: string,
-  configuration?: Configuration,
-) {
-  return <T = unknown, R = AxiosResponse<T>>(
+export const createRequestFunction =
+  (
+    axiosArgs: RequestArgs,
+    globalAxios: AxiosInstance,
+    BASE_PATH: string,
+    configuration?: Configuration,
+  ) =>
+  <T = unknown, R = AxiosResponse<T>>(
     axios: AxiosInstance = globalAxios,
     basePath: string = BASE_PATH,
   ) => {
@@ -199,4 +198,3 @@ export const createRequestFunction = function (
     };
     return axios.request<T, R>(axiosRequestArgs);
   };
-};
